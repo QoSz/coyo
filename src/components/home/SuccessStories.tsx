@@ -92,7 +92,7 @@ export function SuccessStories() {
                                     </div>
                                 </div>
                                 <blockquote className="border-l-4 border-[#FF5722] pl-4 italic text-sm">
-                                    "{story.quote}"
+                                    &ldquo;{story.quote}&rdquo;
                                 </blockquote>
                             </CardContent>
                         </Card>
