@@ -5,32 +5,32 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUp } from 'lucide-react'
 
 export default function ScrollUpButton() {
-    const [isVisible, setIsVisible] = useState(false)
+    const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
+        let lastScrollY = window.scrollY;
         const toggleVisibility = () => {
-            // Show button when page is scrolled down 300px
-            if (window.scrollY > 300) {
-                setIsVisible(true)
-            } else {
-                setIsVisible(false)
+            // Throttle updates to reduce the number of re-renders
+            const currentScrollY = window.scrollY;
+            if (Math.abs(currentScrollY - lastScrollY) > 50) { // Only update visibility if significant scroll occurs
+                setIsVisible(currentScrollY > 300);
+                lastScrollY = currentScrollY;
             }
         }
 
-        window.addEventListener('scroll', toggleVisibility)
+        window.addEventListener('scroll', toggleVisibility, { passive: true });
 
-        return () => window.removeEventListener('scroll', toggleVisibility)
-    }, [])
+        return () => window.removeEventListener('scroll', toggleVisibility);
+    }, []);
 
     const scrollToTop = () => {
-        const scrollStep = window.scrollY / 30; // Adjust the divisor for speed
         const scrollAnimation = () => {
             if (window.scrollY > 0) {
-                window.scrollBy(0, -scrollStep); // Scroll up
-                requestAnimationFrame(scrollAnimation); // Continue the animation
+                window.scrollTo(0, Math.floor(window.scrollY * 0.8)); // Use exponential decay for smoother and faster scroll
+                requestAnimationFrame(scrollAnimation);
             }
         };
-        requestAnimationFrame(scrollAnimation); // Start the animation
+        requestAnimationFrame(scrollAnimation);
     }
 
     return (
