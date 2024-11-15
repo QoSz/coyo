@@ -24,10 +24,10 @@ export function Navigation() {
     const [isOpen, setIsOpen] = useState(false)
 
     const navItems = [
-        { href: "#methodology", label: "Methodology", icon: <Waypoints className="h-4 w-4" /> },
-        { href: "#success-stories", label: "Success Stories", icon: <Trophy className="h-4 w-4" /> },
-        { href: "#timeline", label: "Journey", icon: <History className="h-4 w-4" /> },
-        { href: "#about", label: "About", icon: <UserIcon className="h-4 w-4" /> },
+        { href: "/#methodology", label: "Methodology", icon: <Waypoints className="h-4 w-4" /> },
+        { href: "/#success-stories", label: "Success Stories", icon: <Trophy className="h-4 w-4" /> },
+        { href: "/#timeline", label: "Journey", icon: <History className="h-4 w-4" /> },
+        { href: "/#about", label: "About", icon: <UserIcon className="h-4 w-4" /> },
         { href: "/contact", label: "Contact", icon: <Phone className="h-4 w-4" /> },
     ]
 
